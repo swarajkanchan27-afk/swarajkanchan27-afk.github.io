@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Immortal Gaming Café — Satya Niketan, Delhi</title>
+<meta name="description" content="High-end PCs, PS5 racks, a racing rig and a menu people keep naming by name — what 70 Google reviews say about Immortal Gaming Café, Satya Niketan." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16101F;
+    --surface:#211A2B;
+    --surface-2:#2B2236;
+    --line: rgba(243,236,247,0.11);
+    --text:#F3ECF7;
+    --text-dim:#B6A6C6;
+    --magenta:#FF3E7F;
+    --amber:#FFB648;
+    --mint:#46E0BF;
+    --radius: 6px;
+    --nav-h: 76px;
+    --display: 'Anton', sans-serif;
+    --body: 'Manrope', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;}
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--magenta); color:var(--ink);}
+  :focus-visible{outline:2px solid var(--mint); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+    }
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- layout helpers ---------- */
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  section{padding:96px 0; border-bottom:1px solid var(--line); position:relative;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--mint); margin:0 0 14px;
+  }
+  h2.title{
+    font-family:var(--display); text-transform:uppercase; font-weight:400;
+    font-size:clamp(1.9rem, 4vw, 3.1rem); line-height:1.02; margin:0 0 18px; letter-spacing:0.005em;
+  }
+  .lede{color:var(--text-dim); max-width:640px; font-size:17px; margin:0 0 48px;}
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1; transform:none;}
+
+  /* ---------- scanline overlay ---------- */
+  .scanlines{
+    position:fixed; inset:0; pointer-events:none; z-index:999; mix-blend-mode:overlay; opacity:0.05;
+    background:repeating-linear-gradient(to bottom, #fff 0px, #fff 1px, transparent 1px, transparent 3px);
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; height:var(--nav-h); z-index:200;
+    background:rgba(22,16,31,0.78); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center;
+  }
+  .nav-inner{width:100%; max-width:var(--maxw); margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:var(--display); text-transform:uppercase; font-size:19px; letter-spacing:0.02em; display:flex; align-items:center; gap:10px;}
+  .logo .mark{width:11px; height:11px; background:var(--magenta); display:inline-block; transform:rotate(45deg);}
+  nav.links{display:flex; gap:34px; font-size:14.5px; font-weight:600;}
+  nav.links a{color:var(--text-dim); transition:color .2s ease;}
+  nav.links a:hover{color:var(--text);}
+  .nav-cta{
+    font-family:var(--mono); font-size:13px; font-weight:600; padding:10px 18px; border-radius:4px;
+    background:var(--magenta); color:var(--ink); white-space:nowrap;
+  }
+  .burger{display:none; background:none; border:1px solid var(--line); border-radius:4px; padding:8px 10px; cursor:pointer;}
+  .burger span{display:block; width:18px; height:2px; background:var(--text); margin:4px 0;}
+  .mobile-panel{
+    position:fixed; top:var(--nav-h); left:0; right:0; background:var(--surface);
+    border-bottom:1px solid var(--line); display:flex; flex-direction:column; padding:18px 28px;
+    gap:16px; transform:translateY(-12px); opacity:0; pointer-events:none; transition:all .25s ease; z-index:199;
+  }
+  .mobile-panel.open{transform:none; opacity:1; pointer-events:auto;}
+  .mobile-panel a{font-weight:600; font-size:15px;}
+
+  @media (max-width:840px){
+    nav.links{display:none;}
+    .burger{display:inline-flex; flex-direction:column;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding-top:calc(var(--nav-h) + 90px); padding-bottom:90px; overflow:hidden; border-bottom:1px solid var(--line);
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .glow{position:absolute; border-radius:50%; filter:blur(70px); opacity:0.35; z-index:1; pointer-events:none;}
+  .glow.g1{width:480px; height:480px; background:var(--magenta); top:-160px; right:-120px;}
+  .glow.g2{width:380px; height:380px; background:var(--amber); bottom:-180px; left:-100px; opacity:0.18;}
+
+  .ping-badge{
+    position:absolute; top:0; right:28px; display:flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12.5px; color:var(--text-dim); border:1px solid var(--line);
+    padding:8px 12px; border-radius:30px; background:rgba(255,255,255,0.02);
+  }
+  .ping-badge .dot{width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 0 rgba(70,224,191,0.6); animation:pulse 2.2s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(70,224,191,0.55);}
+    70%{box-shadow:0 0 0 8px rgba(70,224,191,0);}
+    100%{box-shadow:0 0 0 0 rgba(70,224,191,0);}
+  }
+  .ping-badge strong{color:var(--mint); font-weight:700;}
+
+  h1.headline{
+    font-family:var(--display); text-transform:uppercase; font-weight:400; margin:34px 0 26px;
+    font-size:clamp(3rem, 10vw, 7.1rem); line-height:0.94; letter-spacing:0.005em;
+  }
+  h1.headline .accent{color:var(--magenta);}
+  .hero-sub{font-size:18px; color:var(--text-dim); max-width:600px; margin:0 0 38px;}
+  .cta-row{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:64px;}
+  .btn{
+    font-family:var(--mono); font-weight:600; font-size:14px; letter-spacing:0.02em;
+    padding:14px 26px; border-radius:4px; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn.primary{background:var(--magenta); color:var(--ink);}
+  .btn.ghost{border:1px solid var(--line); color:var(--text);}
+
+  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .stat{background:var(--surface); padding:22px 20px;}
+  .stat .num{font-family:var(--mono); font-size:28px; font-weight:700; color:var(--mint);}
+  .stat .lbl{font-size:12.5px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-top:4px;}
+  @media (max-width:680px){.stat-row{grid-template-columns:1fr;}}
+
+  /* ---------- loadout ---------- */
+  .loadout-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(270px,1fr)); gap:20px;}
+  .gear-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .gear-card:hover{border-color:var(--magenta); transform:translateY(-4px);}
+  .gear-card .icon{width:38px; height:38px; color:var(--amber); margin-bottom:18px;}
+  .gear-card .icon svg{width:100%; height:100%; stroke:currentColor; fill:none; stroke-width:1.4;}
+  .gear-card h3{font-family:var(--body); font-weight:800; font-size:17px; margin:0 0 8px;}
+  .gear-card p{font-size:14.5px; color:var(--text-dim); margin:0 0 16px;}
+  .chip-row{display:flex; gap:8px; flex-wrap:wrap;}
+  .chip{
+    font-family:var(--mono); font-size:11.5px; padding:5px 9px; border-radius:3px;
+    background:var(--surface-2); color:var(--mint); border:1px solid var(--line);
+  }
+
+  /* ---------- telemetry ---------- */
+  .tele-panel{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:34px 30px;
+  }
+  .tele-row{display:grid; grid-template-columns:200px 1fr 90px; align-items:center; gap:18px; padding:16px 0; border-bottom:1px solid var(--line);}
+  .tele-row:last-child{border-bottom:none;}
+  .tele-label{font-weight:700; font-size:14.5px;}
+  .tele-track{position:relative; height:10px; background:var(--surface-2); border-radius:3px; overflow:hidden;}
+  .tele-fill{position:absolute; left:0; top:0; height:100%; border-radius:3px; background:linear-gradient(90deg, var(--magenta), var(--amber));}
+  .tele-count{font-family:var(--mono); font-size:13px; color:var(--mint); text-align:right;}
+  .tele-note{font-size:13px; color:var(--text-dim); margin-top:22px;}
+  @media (max-width:680px){
+    .tele-row{grid-template-columns:1fr; gap:8px;}
+    .tele-count{text-align:left;}
+  }
+
+  /* ---------- reviews ---------- */
+  .reviews-head{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:36px;}
+  .reroll-btn{
+    font-family:var(--mono); font-size:13px; font-weight:600; background:none; border:1px solid var(--line);
+    color:var(--text); padding:12px 20px; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:10px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .reroll-btn:hover{border-color:var(--mint); color:var(--mint);}
+  .reroll-btn svg{width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.6; transition:transform .4s ease;}
+  .reroll-btn.spin svg{transform:rotate(180deg);}
+  .review-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:18px; transition:opacity .25s ease;}
+  .review-grid.fading{opacity:0;}
+  .rcard{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:24px; display:flex; flex-direction:column; gap:16px;}
+  .rcard .quote{font-size:15.5px; line-height:1.5;}
+  .rcard .quote::before{content:"“"; color:var(--magenta); font-family:var(--display); margin-right:2px;}
+  .rcard .quote::after{content:"”"; color:var(--magenta); font-family:var(--display);}
+  .rcard .who{font-family:var(--mono); font-size:12px; color:var(--text-dim); display:flex; justify-content:space-between; gap:10px; border-top:1px solid var(--line); padding-top:14px;}
+  .rcard .who b{color:var(--text); font-weight:600;}
+
+  /* ---------- team replies ---------- */
+  .reply-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:20px;}
+  .reply-card{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface);}
+  .reply-card .customer{padding:18px 22px; font-size:14.5px; color:var(--text-dim); border-bottom:1px dashed var(--line);}
+  .reply-card .customer span{font-family:var(--mono); font-size:11.5px; color:var(--amber); display:block; margin-bottom:6px; letter-spacing:0.06em; text-transform:uppercase;}
+  .reply-card .owner{padding:18px 22px; font-size:14.5px; background:var(--surface-2);}
+  .reply-card .owner span{font-family:var(--mono); font-size:11.5px; color:var(--mint); display:block; margin-bottom:6px; letter-spacing:0.06em; text-transform:uppercase;}
+
+  /* ---------- menu ---------- */
+  .menu-ticket{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    max-width:560px; padding:6px 0;
+  }
+  .menu-item{display:flex; justify-content:space-between; gap:18px; padding:18px 26px; border-bottom:1px dashed var(--line);}
+  .menu-item:last-child{border-bottom:none;}
+  .menu-item .name{font-weight:700; font-size:15.5px;}
+  .menu-item .note{font-size:13px; color:var(--text-dim); margin-top:4px; max-width:300px;}
+  .menu-item .tag{font-family:var(--mono); font-size:11.5px; color:var(--mint); white-space:nowrap; align-self:flex-start; padding-top:3px;}
+
+  /* ---------- find us ---------- */
+  .find-grid{display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:start;}
+  @media (max-width:840px){.find-grid{grid-template-columns:1fr;}}
+  .addr-block{font-size:16px; color:var(--text-dim); margin-bottom:28px; line-height:1.6;}
+  .addr-block strong{color:var(--text); display:block; font-size:19px; margin-bottom:6px; font-weight:800;}
+  .map-frame{width:100%; aspect-ratio:4/3; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .map-frame iframe{width:100%; height:100%; border:0;}
+  .hint{font-size:13px; color:var(--text-dim); margin-top:16px;}
+
+  footer{padding:46px 0; }
+  .foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:13px; color:var(--text-dim);}
+  footer .logo{font-size:15px;}
+</style>
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="mark" aria-hidden="true"></span>Immortal Gaming Café</div>
+    <nav class="links">
+      <a href="#loadout">Loadout</a>
+      <a href="#signal">Signal</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#menu">Menu</a>
+    </nav>
+    <a class="nav-cta" id="navCta" href="#" target="_blank" rel="noopener">Get Directions</a>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#loadout">Loadout</a>
+    <a href="#signal">Signal</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#menu">Menu</a>
+    <a href="#visit">Find Us</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="glow g1" aria-hidden="true"></div>
+    <div class="glow g2" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="ping-badge"><span class="dot" aria-hidden="true"></span>LIVE PING <strong id="pingVal">18</strong>ms</div>
+      <p class="eyebrow">SATYA NIKETAN · SOUTH DELHI</p>
+      <h1 class="headline">Immortal<br><span class="accent">Gaming Café</span></h1>
+      <p class="hero-sub">High-end rigs, a wall of PS5s, an 85-inch screen and a racing rig with real pedals — this is what seventy Google reviews keep pointing back to.</p>
+      <div class="cta-row">
+        <a class="btn primary" id="heroCta" href="#" target="_blank" rel="noopener">Get Directions</a>
+        <a class="btn ghost" href="#reviews">Read the Reviews</a>
+      </div>
+      <div class="stat-row reveal">
+        <div class="stat"><div class="num">70</div><div class="lbl">Google reviews read</div></div>
+        <div class="stat"><div class="num">9</div><div class="lbl">Owner replies sent</div></div>
+        <div class="stat"><div class="num">7+ yrs</div><div class="lbl">Of recorded signal</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOADOUT -->
+  <section id="loadout">
+    <div class="wrap">
+      <p class="eyebrow reveal">The Loadout</p>
+      <h2 class="title reveal">What you're actually sitting down to</h2>
+      <p class="lede reveal">Pulled straight from what reviewers describe using the place for — from ranked nights to recliner co-op.</p>
+      <div class="loadout-grid">
+
+        <div class="gear-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg></div>
+          <h3>High-End Gaming PCs</h3>
+          <p>240Hz panels and RTX 3080 rigs, built for ranked nights and low ping.</p>
+          <div class="chip-row"><span class="chip">240Hz</span><span class="chip">RTX 3080</span></div>
+        </div>
+
+        <div class="gear-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M6 9h2M14 9h.01M17 9h.01M5 9c-1.5 0-2.5 1.5-2 3l1 4c.3 1 1.2 1.5 2 1l2-1.5h8l2 1.5c.8.5 1.7 0 2-1l1-4c.5-1.5-.5-3-2-3H5z"/></svg></div>
+          <h3>PS5 &amp; PS4 Consoles</h3>
+          <p>A deep library with most DLC already loaded, plus recliner seating to sink into.</p>
+          <div class="chip-row"><span class="chip">PS5</span><span class="chip">PS4</span><span class="chip">Recliners</span></div>
+        </div>
+
+        <div class="gear-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.3"/><line x1="12" y1="3" x2="12" y2="9.5"/><line x1="5.6" y1="16" x2="9.8" y2="13.6"/><line x1="18.4" y1="16" x2="14.2" y2="13.6"/></svg></div>
+          <h3>Racing Sim Rig</h3>
+          <p>A Logitech G29 wheel and pedal set, paired with Forza Horizon 5.</p>
+          <div class="chip-row"><span class="chip">G29</span><span class="chip">Forza Horizon 5</span></div>
+        </div>
+
+        <div class="gear-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="12" rx="1"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/></svg></div>
+          <h3>85" 120Hz Screen</h3>
+          <p>Built for co-op nights and watch parties, sized to be seen from the couch.</p>
+          <div class="chip-row"><span class="chip">Jarvis 85"</span><span class="chip">120Hz</span></div>
+        </div>
+
+        <div class="gear-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="9" cy="12" r="1.4"/><line x1="14" y1="17" x2="20" y2="6"/></svg></div>
+          <h3>Pool Table</h3>
+          <p>A round between matches, or while you're waiting on a PC to free up.</p>
+          <div class="chip-row"><span class="chip">Casual</span></div>
+        </div>
+
+        <div class="gear-card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="4" y1="7" x2="20" y2="17"/><line x1="20" y1="7" x2="4" y2="17"/></svg></div>
+          <h3>Full AC + Recliners</h3>
+          <p>Marathon sessions stay cool, with seating built for the long haul.</p>
+          <div class="chip-row"><span class="chip">Climate Controlled</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TELEMETRY -->
+  <section id="signal">
+    <div class="wrap">
+      <p class="eyebrow reveal">Review Telemetry</p>
+      <h2 class="title reveal">What 70 reviews keep calling out</h2>
+      <p class="lede reveal">A manual read of every review referenced on this page, tallied by theme.</p>
+
+      <div class="tele-panel reveal">
+        <div class="tele-row">
+          <div class="tele-label">Ambience &amp; Vibe</div>
+          <div class="tele-track"><div class="tele-fill" style="width:43%"></div></div>
+          <div class="tele-count">30+ / 70</div>
+        </div>
+        <div class="tele-row">
+          <div class="tele-label">Staff &amp; Service</div>
+          <div class="tele-track"><div class="tele-fill" style="width:36%"></div></div>
+          <div class="tele-count">25+ / 70</div>
+        </div>
+        <div class="tele-row">
+          <div class="tele-label">Food &amp; Café Menu</div>
+          <div class="tele-track"><div class="tele-fill" style="width:29%"></div></div>
+          <div class="tele-count">20+ / 70</div>
+        </div>
+        <div class="tele-row">
+          <div class="tele-label">PC &amp; Console Specs</div>
+          <div class="tele-track"><div class="tele-fill" style="width:29%"></div></div>
+          <div class="tele-count">20+ / 70</div>
+        </div>
+        <div class="tele-row">
+          <div class="tele-label">Price &amp; Value</div>
+          <div class="tele-track"><div class="tele-fill" style="width:17%"></div></div>
+          <div class="tele-count">12+ / 70</div>
+        </div>
+        <div class="tele-row">
+          <div class="tele-label">Racing Sim &amp; Big Screen</div>
+          <div class="tele-track"><div class="tele-fill" style="width:7%"></div></div>
+          <div class="tele-count">5+ / 70</div>
+        </div>
+      </div>
+      <p class="tele-note reveal">Counted by hand from the 70 reviews shown on this page — a lower-bound read, not an exact science.</p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="reviews-head">
+        <div>
+          <p class="eyebrow reveal">Player Reviews</p>
+          <h2 class="title reveal" style="margin-bottom:0;">What players are saying</h2>
+        </div>
+        <button class="reroll-btn reveal" id="rerollBtn" type="button">
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.5 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.65 4.36A9 9 0 0 0 20.5 15"/></svg>
+          Reroll
+        </button>
+      </div>
+      <div class="review-grid" id="reviewGrid"></div>
+      <noscript>
+        <p>Sample reviews: "Top-notch PCs, comfy chairs, fast internet — my late-night go-to." — land load. "Heaven for a gamer — ambience is a 10 out of 10." — Dharmananda Jena.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- TEAM REPLIES -->
+  <section id="team">
+    <div class="wrap">
+      <p class="eyebrow reveal">Straight From The Owner</p>
+      <h2 class="title reveal">They actually reply</h2>
+      <p class="lede reveal">Nine reviews got a personal response. A few favorites:</p>
+      <div class="reply-grid">
+        <div class="reply-card reveal">
+          <div class="customer"><span>A Fan Of Dytto</span>Constant ping of 400 while playing Valorant — overall a great experience.</div>
+          <div class="owner"><span>The Owner</span>Thanks for the kind words. You mean 40ms ping? Visit again 😊</div>
+        </div>
+        <div class="reply-card reveal">
+          <div class="customer"><span>Abhinav Trikha</span>Very chill, very gamer-y vibe — loved the food too.</div>
+          <div class="owner"><span>The Owner</span>Appreciate the feedback — we're adding more PCs next month. For the record, we run three 240Hz machines with RTX 3080s.</div>
+        </div>
+        <div class="reply-card reveal">
+          <div class="customer"><span>Rishabh Anand</span>Food is great, though the canned drinks felt a little pricey.</div>
+          <div class="owner"><span>The Owner</span>The canned ones are 350ml — airport-style cans. Thanks for the feedback, visit again.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="wrap">
+      <p class="eyebrow reveal">Off The Menu</p>
+      <h2 class="title reveal">Fuel for the grind</h2>
+      <p class="lede reveal">The food items reviewers kept naming by name.</p>
+      <div class="menu-ticket reveal">
+        <div class="menu-item">
+          <div><div class="name">Cold Coffee</div><div class="note">Called out as a "must-have" by more than one reviewer.</div></div>
+          <div class="tag">Top pick</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="name">Veg Farmhouse Pizza</div><div class="note">The pizza recommendation that keeps resurfacing.</div></div>
+          <div class="tag">Regular order</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="name">Oreo Shake</div><div class="note">Usually mentioned right alongside the pizza.</div></div>
+          <div class="tag">Regular order</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="name">Schezwan Burger</div><div class="note">Part of the go-to combo for regulars.</div></div>
+          <div class="tag">Regular order</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="name">Maggi</div><div class="note">The reliable snack between matches.</div></div>
+          <div class="tag">Snack</div>
+        </div>
+        <div class="menu-item">
+          <div><div class="name">Canned Soft Drinks</div><div class="note">350ml, airport-style cans — confirmed directly by the owner.</div></div>
+          <div class="tag">350ml</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIND US -->
+  <section id="visit">
+    <div class="wrap">
+      <p class="eyebrow reveal">Find The Spot</p>
+      <h2 class="title reveal">Find us</h2>
+      <div class="find-grid">
+        <div class="reveal">
+          <div class="addr-block">
+            <strong>Immortal Gaming Café</strong>
+            Second &amp; Third Floor, Satya Niketan, 293,<br>
+            near Venkateswara College, South Moti Bagh,<br>
+            New Delhi, Delhi 110021
+          </div>
+          <a class="btn primary" id="findUsCta" href="#" target="_blank" rel="noopener">Get Directions</a>
+          <p class="hint">For current hours, phone, and live availability, check the listing directly on Google Maps.</p>
+        </div>
+        <div class="map-frame reveal">
+          <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Immortal Gaming Café"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="logo"><span style="color:var(--magenta)">●</span> Immortal Gaming Café · Satya Niketan, New Delhi</div>
+    <div>Page built from 70 public Google reviews. Quotes lightly trimmed for length and clarity.</div>
+  </div>
+</footer>
+
+<script>
+  // ---------- shared address / maps links ----------
+  const ADDRESS = "Immortal Gaming Cafe, Second & Third, Satya Niketan, 293, near Venkateswara College, South Moti Bagh, New Delhi, Delhi 110021";
+  const directionsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ADDRESS);
+  const embedUrl = "https://www.google.com/maps?q=" + encodeURIComponent(ADDRESS) + "&output=embed";
+  ["navCta","heroCta","findUsCta"].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.href = directionsUrl;
+  });
+  document.getElementById("mapFrame").src = embedUrl;
+
+  // ---------- mobile nav ----------
+  const burger = document.getElementById("burgerBtn");
+  const panel = document.getElementById("mobilePanel");
+  burger.addEventListener("click", () => {
+    const open = panel.classList.toggle("open");
+    burger.setAttribute("aria-expanded", open);
+  });
+  panel.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+    panel.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+  }));
+
+  // ---------- reveal on scroll ----------
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealEls = document.querySelectorAll(".reveal");
+  if(reduceMotion){
+    revealEls.forEach(el => el.classList.add("visible"));
+  } else if("IntersectionObserver" in window){
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("visible"); obs.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => obs.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add("visible"));
+  }
+
+  // ---------- live ping badge ----------
+  const pingEl = document.getElementById("pingVal");
+  if(!reduceMotion){
+    setInterval(() => {
+      pingEl.textContent = Math.floor(Math.random() * 18) + 12;
+    }, 2400);
+  }
+
+  // ---------- reviews data + reroll ----------
+  const REVIEWS = [
+    {q:"Top-notch PCs, comfy chairs, fast internet — my late-night go-to.", n:"land load", m:"1 review · 7 months ago"},
+    {q:"A favorite hangout for both gamers and food lovers alike.", n:"Manish Gupta", m:"1 review · 7 months ago"},
+    {q:"Best gaming café in Delhi — respectful staff, great food.", n:"Khuplalmuan", m:"1 review · 7 months ago"},
+    {q:"Amazing experience, excellent ambience — recommending it to everyone.", n:"Ishan Verma", m:"Local Guide · 2 reviews · 7 months ago"},
+    {q:"Played Valorant here, rock-solid PCs, totally worth the price.", n:"A Fan Of Dytto", m:"1 review · 5 months ago"},
+    {q:"Affordable, great ambience, and genuinely nice people.", n:"Tanush Gupta", m:"Local Guide · 12 reviews · 7 months ago"},
+    {q:"High-end PCs, comfy recliners on PS5 — the cold coffee's a must.", n:"MD Roshan", m:"1 review · a year ago"},
+    {q:"Best setups, so many devices to try — staff are the coolest.", n:"Arnav Garg", m:"6 reviews · 7 months ago"},
+    {q:"A huge PlayStation library with most DLCs, prices stay reasonable.", n:"Saksham Sehra", m:"Local Guide · 34 reviews · a year ago"},
+    {q:"Fast PCs, smooth internet, friendly staff, fair prices.", n:"Samarth", m:"2 reviews · 2 months ago"},
+    {q:"Heaven for a gamer — ambience is a 10 out of 10.", n:"Dharmananda Jena", m:"Local Guide · 45 reviews · a year ago"},
+    {q:"Hosted a games night here — vibe, games and food all on point.", n:"Sukriti Saxena", m:"Local Guide · 17 reviews · a year ago"},
+    {q:"A huge range of PS5 and PC titles in a great-looking space.", n:"Khushi Arora", m:"Local Guide · 43 reviews · a year ago"},
+    {q:"Arcade, PC, PS5 and car sim all under one roof — plus great pizza.", n:"Pragya Verma", m:"Local Guide · 100 reviews · a year ago"},
+    {q:"The car sim setup is next-level — smooth, realistic, hard to quit.", n:"Vaibhav Jain", m:"2 reviews · 2 months ago"},
+    {q:"The 240Hz screens make shooters feel so much smoother.", n:"Bharat Sethi", m:"2 reviews · 2 months ago"},
+    {q:"The 85-inch 120Hz screen — insane clarity, like playing inside the game.", n:"Prashansa Taneja", m:"2 reviews · 7 months ago"},
+    {q:"Great interiors, finger-licking food, now with a G29 racing rig too.", n:"Varun Kalra", m:"9 reviews · 3 years ago"},
+    {q:"New recliners, 240Hz monitors, Logitech G Pro headsets — solid upgrade.", n:"Manav Sapra", m:"Local Guide · 15 reviews · 2 years ago"},
+    {q:"Great interiors, excellent gear, tasty food, properly affordable.", n:"Nawab Alam", m:"Local Guide · 47 reviews · 7 years ago"},
+    {q:"Loyalty points are live now — easy to redeem, nice touch for regulars.", n:"Keshav Gaur", m:"3 reviews · 7 months ago"},
+    {q:"High-end PCs, PS4 and PS5 both, staff that's genuinely friendly.", n:"Kevin Thomas", m:"10 reviews · 3 years ago"},
+  ];
+
+  const grid = document.getElementById("reviewGrid");
+  const rerollBtn = document.getElementById("rerollBtn");
+
+  function shuffled(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function cardHTML(r){
+    return `<div class="rcard"><div class="quote">${r.q}</div><div class="who"><b>${r.n}</b><span>${r.m}</span></div></div>`;
+  }
+
+  function renderSet(list){
+    grid.innerHTML = list.map(cardHTML).join("");
+  }
+
+  let currentNames = [];
+  function nextSet(){
+    let pick = shuffled(REVIEWS).slice(0,6);
+    let tries = 0;
+    while(currentNames.length && pick.every(r => currentNames.includes(r.n)) && tries < 3){
+      pick = shuffled(REVIEWS).slice(0,6);
+      tries++;
+    }
+    currentNames = pick.map(r => r.n);
+    return pick;
+  }
+
+  renderSet(nextSet());
+
+  rerollBtn.addEventListener("click", () => {
+    rerollBtn.classList.add("spin");
+    if(reduceMotion){
+      renderSet(nextSet());
+    } else {
+      grid.classList.add("fading");
+      setTimeout(() => {
+        renderSet(nextSet());
+        grid.classList.remove("fading");
+      }, 220);
+    }
+    setTimeout(() => rerollBtn.classList.remove("spin"), 420);
+  });
+</script>
+
+</body>
+</html>
